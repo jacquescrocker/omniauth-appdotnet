@@ -6,6 +6,13 @@ on the [App.net Alpha](http://alpha.app.net).
 
 ## Basic Usage
 
+Add `omniauth-appdotnet` to your Gemfile and `bundle`.
+
+    gem "omniauth-appdotnet"
+
+
+Add the provider to your OmniAuth configuration block:
+
     use OmniAuth::Builder do
       provider :appdotnet, ENV['APPDOTNET_CLIENT_ID'], ENV['APPDOTNET_CLIENT_SECRET']
     end
