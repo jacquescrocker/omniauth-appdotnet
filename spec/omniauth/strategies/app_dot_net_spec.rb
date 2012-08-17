@@ -17,5 +17,9 @@ describe OmniAuth::Strategies::AppDotNet do
     it 'should have correct authorize url' do
       subject.options.client_options.authorize_url.should eq('https://alpha.app.net/oauth/authenticate')
     end
+
+    it 'should have correct token url' do
+      subject.options.client_options.token_url.should eq('https://alpha.app.net/oauth/access_token')
+    end
   end
 end
