@@ -24,7 +24,7 @@ task :install => :build do
 end
 
 task :release => :build do
-  system "git tag -a v#{OmniAuth::AppDotNet::VERSION} -m 'Tagging #{OmniAuth::AppDotNet::VERSION}'"
-  system "git push --tags"
+  # system "git tag -a v#{OmniAuth::AppDotNet::VERSION} -m 'Tagging #{OmniAuth::AppDotNet::VERSION}'"
+  # system "git push --tags"
   system "gem push omniauth-appdotnet-#{OmniAuth::AppDotNet::VERSION}.gem"
 end
