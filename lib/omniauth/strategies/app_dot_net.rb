@@ -4,7 +4,7 @@ module OmniAuth
   module Strategies
     class AppDotNet < OmniAuth::Strategies::OAuth2
       option :client_options, {
-        :site => 'https://alpha.app.net/',
+        :site => 'https://alpha-api.app.net/',
         :authorize_url => 'https://alpha.app.net/oauth/authenticate',
         :token_url => 'https://alpha.app.net/oauth/access_token'
       }
@@ -16,21 +16,25 @@ module OmniAuth
       uid { user_data['id'] }
 
       info do
+        # these fields will probably change rapidly as App.net api evolves
         {
-          'email' => user_data['email'],
           'name' => user_data['name'],
-          'image' => user_data['image'],
+          'username' => user_data['username'],
+          'image' => (user_data['avatar_image'] ? user_data['avatar_image']["url"] : nil),
+          'cover' => (user_data['cover_image'] ? user_data['cover_image']["url"] : nil),
+          'human' => user_data['type'] == "human",
+          'timezone' => user_data['timezone'],
           'urls' => {
-            # todo: replace these
-            'AppDotNet' => user_data['app_dot_net_url'],
-            'Website' => user_data['online_bio_url']
+            'Profile' => "https://alpha.app.net/#{user_data['username']}"
           },
         }
       end
 
       def user_data
         access_token.options[:mode] = :query
-        user_data ||= access_token.get('/1/me').parsed
+        @user_data ||= begin
+          access_token.get("/stream/0/users/#{access_token.params["user_id"]}").parsed
+        end
       end
 
     end
