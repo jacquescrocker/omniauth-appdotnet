@@ -31,7 +31,6 @@ module OmniAuth
       end
 
       def user_data
-        access_token.options[:mode] = :query
         @user_data ||= begin
           access_token.get("/stream/0/users/#{access_token.params["user_id"]}").parsed
         end
