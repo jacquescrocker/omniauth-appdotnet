@@ -4,6 +4,8 @@ This is the unofficial OmniAuth strategy for authenticating to [App.net](http://
 use it, you'll need to sign up for an OAuth2 Client ID and Secret
 on the [App.net Alpha](http://alpha.app.net).
 
+Built for use by **[Lizi.ai](http://lizi.ai)**, your online personal assistant. Feedback / patches greatly appreciated!
+
 ## Basic Usage
 
 Add `omniauth-appdotnet` to your Gemfile and `bundle`.
