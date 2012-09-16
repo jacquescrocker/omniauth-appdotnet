@@ -32,7 +32,7 @@ module OmniAuth
 
       def user_data
         @user_data ||= begin
-          data = access_token.get("/stream/0/users/me")
+          data = access_token.get("/stream/0/users/me").parsed
           data = data['data'] if data.has_key? 'data'
           data
         end
