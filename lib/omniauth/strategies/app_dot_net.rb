@@ -32,7 +32,7 @@ module OmniAuth
 
       def user_data
         @user_data ||= begin
-          access_token.get("/stream/0/users/#{access_token.params["user_id"]}").parsed
+          access_token.get("/stream/0/users/me").parsed
         end
       end
 
