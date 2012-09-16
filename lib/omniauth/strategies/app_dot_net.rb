@@ -4,7 +4,7 @@ module OmniAuth
   module Strategies
     class AppDotNet < OmniAuth::Strategies::OAuth2
       option :client_options, {
-        :site => 'https://alpha-api.app.net/',
+        :site => 'https://alpha-api.app.net',
         :authorize_url => 'https://alpha.app.net/oauth/authenticate',
         :token_url => 'https://alpha.app.net/oauth/access_token'
       }
