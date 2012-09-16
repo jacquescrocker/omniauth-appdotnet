@@ -4,7 +4,7 @@ module OmniAuth
   module Strategies
     class AppDotNet < OmniAuth::Strategies::OAuth2
       option :client_options, {
-        :site => 'https://alpha-api.app.net/',
+        :site => 'https://alpha-api.app.net',
         :authorize_url => 'https://alpha.app.net/oauth/authenticate',
         :token_url => 'https://alpha.app.net/oauth/access_token'
       }
@@ -19,7 +19,7 @@ module OmniAuth
         # these fields will probably change rapidly as App.net api evolves
         {
           'name' => user_data['name'],
-          'username' => user_data['username'],
+          'nickname' => user_data['username'],
           'image' => (user_data['avatar_image'] ? user_data['avatar_image']["url"] : nil),
           'cover' => (user_data['cover_image'] ? user_data['cover_image']["url"] : nil),
           'human' => user_data['type'] == "human",
@@ -32,7 +32,9 @@ module OmniAuth
 
       def user_data
         @user_data ||= begin
-          access_token.get("/stream/0/users/#{access_token.params["user_id"]}").parsed
+          data = access_token.get("/stream/0/users/me").parsed
+          data = data['data'] if data.has_key? 'data'
+          data
         end
       end
 

@@ -11,7 +11,7 @@ describe OmniAuth::Strategies::AppDotNet do
     end
 
     it 'should have correct site' do
-      subject.options.client_options.site.should eq('https://alpha.app.net/')
+      subject.options.client_options.site.should eq('https://alpha-api.app.net/')
     end
 
     it 'should have correct authorize url' do
