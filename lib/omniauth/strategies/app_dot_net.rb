@@ -19,7 +19,7 @@ module OmniAuth
         # these fields will probably change rapidly as App.net api evolves
         {
           'name' => user_data['name'],
-          'username' => user_data['username'],
+          'nickname' => user_data['username'],
           'image' => (user_data['avatar_image'] ? user_data['avatar_image']["url"] : nil),
           'cover' => (user_data['cover_image'] ? user_data['cover_image']["url"] : nil),
           'human' => user_data['type'] == "human",
